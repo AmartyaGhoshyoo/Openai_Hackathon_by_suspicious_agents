@@ -268,7 +268,7 @@ await pilot.chat("Compare with competitors");
               transition={{ duration: 0.5, delay: i * 0.03 }}
               className="rounded-lg border border-white/10 bg-white/5 p-4"
             >
-              <div className="mb-2 bg-gradient-to-b from-indigo-500 to-indigo-600  text-transparent bg-clip-text  inline-block">
+              <div className="mb-2 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 text-transparent bg-clip-text inline-block font-semibold">
                 Step {i + 1}
               </div>
               <div className="font-medium">{item.title}</div>
@@ -381,6 +381,7 @@ await pilot.chat("Compare with competitors");
           ))}
         </div>
       </section>
+      <ContactUs />
 
       {/* Final CTA */}
       <section className="mx-auto max-w-6xl px-6 pb-16 text-center text-white">
@@ -419,7 +420,7 @@ await pilot.chat("Compare with competitors");
           </div>
         </motion.div>
       </section>
-      <ContactUs />
+
       {/* FAQ */}
 
       <section id="faq" className="mx-auto max-w-6xl px-6 pb-20 text-white">
