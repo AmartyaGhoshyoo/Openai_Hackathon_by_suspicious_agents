@@ -58,7 +58,7 @@ const page = () => {
     <div className="h-screen flex justify-center items-center">
       <Headers />
       <button
-        className="h-[42px] px-8 py-4 rounded-full bg-[#242424] border border-[#323232] text-white flex justify-center items-center"
+        // className="h-[42px] px-8 py-4 rounded-full bg-[#242424] border border-[#323232] text-white flex justify-center items-center"
         onClick={handleFunction}
       >
         <img src="/google_login_img.png" width={250} alt="google_login" />
