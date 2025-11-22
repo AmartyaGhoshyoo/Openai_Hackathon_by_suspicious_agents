@@ -193,7 +193,7 @@ await pilot.chat("Compare with competitors");
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.6 }}
-          className="text-2xl font-semibold tracking-tight capitalize"
+          className="text-2xl font-semibold tracking-tight capitalize text-center"
         >
           Everything you need for intelligent browsing
         </motion.h2>
@@ -228,7 +228,7 @@ await pilot.chat("Compare with competitors");
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.6 }}
-          className="text-2xl font-semibold tracking-tight capitalize"
+          className="text-2xl font-semibold tracking-tight capitalize text-center"
         >
           How It Works
         </motion.h2>
@@ -284,7 +284,7 @@ await pilot.chat("Compare with competitors");
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.6 }}
-          className="text-2xl font-semibold tracking-tight capitalize"
+          className="text-2xl font-semibold tracking-tight capitalize text-center"
         >
           Loved by power users
         </motion.h2>
@@ -325,7 +325,7 @@ await pilot.chat("Compare with competitors");
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-20%" }}
           transition={{ duration: 0.6 }}
-          className="text-2xl font-semibold tracking-tight capitalize"
+          className="text-2xl font-semibold tracking-tight capitalize text-center"
         >
           Simple pricing
         </motion.h2>
