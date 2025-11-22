@@ -6,11 +6,15 @@ import { Phone } from 'lucide-react';
 import { AnimatePresence, motion } from 'motion/react';
 import { cn } from "@/lib/utils";
 import ChatForm from "./ChatForm";
+import { usePathname } from "next/navigation";
 
 
 const ChatBotButton = () => {
 
+    const pathname = usePathname();
     const [openchatbot, setOpenchatbot] = useState(false);
+
+    if(pathname.includes("/signin"))return null;
 
     return (
         <section className="fixed bottom-2 right-2 sm:bottom-8 sm:right-8">

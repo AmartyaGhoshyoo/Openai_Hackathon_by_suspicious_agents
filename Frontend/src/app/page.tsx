@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import Headers from "@/components/headers/Headers";
 import Faq from "@/components/Faq/Faq";
 import ContactUs from "@/components/ContactUs";
+import { useRouter } from "next/navigation";
 
 const features = [
   {
@@ -45,6 +46,8 @@ const features = [
 ];
 
 export default function HomePage() {
+
+
   return (
     <main className="relative overflow-hidden">
       {/* Background layers */}

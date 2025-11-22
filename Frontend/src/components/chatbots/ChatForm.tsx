@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { Send, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { div } from "motion/react-client";
+import { usegenerateMd5 } from "../hooks/usegenerateMd5";
 
 interface Message {
     id: string;
@@ -123,6 +124,7 @@ const MessageItem = ({ message }: { message: Message }) => {
 
 // Messages List Component
 const MessagesList = ({ messages ,isloading}: { messages: Message[],isloading:boolean}) => {
+
     const messagesEndRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -166,13 +168,15 @@ const ChatInput = ({
 }: { 
     value: string; 
     onChange: (value: string) => void; 
-    onSend: () => void; 
+    onSend: (key:string) => void; 
     disabled: boolean; 
 }) => {
+
+    const { session_key } = usegenerateMd5();
     const handleKeyPress = (e: React.KeyboardEvent) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            onSend();
+            onSend(session_key);
         }
     };
 
@@ -187,7 +191,7 @@ const ChatInput = ({
                     placeholder="Type your message..."
                 />
                 <Button
-                    onClick={onSend}
+                    onClick={()=> onSend(session_key)}
                     disabled={disabled}
                     className="bg-white hover:bg-white/90 disabled:bg-white/20 text-black disabled:text-white/40 h-12 w-12 p-0 flex-shrink-0"
                 >
@@ -254,7 +258,7 @@ const ChatForm = () => {
         return m ? m[0] : null;
     };
 
-    const handleSendMessage = async () => {
+    const handleSendMessage = async (session_key:string) => {
         if (!inputValue.trim()) return;
 
         const userText = inputValue.trim();
@@ -280,14 +284,15 @@ const ChatForm = () => {
               rawUrl = window.location.href; // already raw
             }
             
-            const res = await fetch("https://gpt-qa.parentune.com/chat/agentic_webpilot/p/p", {
+            const res = await fetch("https://gpt-qa.parentune.com/chat/agentic_webpilot/", {
               method: "POST",
-              headers: { "Content-Type": "application/json" },
+              headers: { "Content-Type": "application/json",session_key:session_key ||""},
               body: JSON.stringify({ 
                 message: userText,
                 current_url: rawUrl
               })
             });
+
             const data = await res.json();
             const botText = typeof data.text === 'string' ? data.text : JSON.stringify(data);
             setIsloading(false);

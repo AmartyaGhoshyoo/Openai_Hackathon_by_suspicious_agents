@@ -5,9 +5,11 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { motion } from "motion/react";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 const Headers = () => {
 
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -53,11 +55,11 @@ const Headers = () => {
             <Menu className="size-5 font-bold" />
           </button>
           <div className="hidden sm:flex sm:items-center sm:gap-8">
-            <div>
+            <Link href={'https://github.com/AmartyaGhoshyoo/Openai_Hackathon_by_suspicious_agents'} target="_blank">
               <Github />
-            </div>
+            </Link>
             <div>
-              <button className="h-[40px] w-[max-content] px-8 py-4 rounded-full bg-[#242424] border border-[#313131] flex justify-center items-center cursor-pointer">
+              <button onClick={()=>router.push("/signin")} className="h-[40px] w-[max-content] px-8 py-4 rounded-full bg-[#242424] border border-[#313131] flex justify-center items-center cursor-pointer">
                 Signin
               </button>
             </div>

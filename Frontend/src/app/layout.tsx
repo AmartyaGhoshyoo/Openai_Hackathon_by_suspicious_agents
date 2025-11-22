@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ChatBotButton from "@/components/chatbots/ChatBotButton";
 import Headers from "@/components/headers/Headers";
+import ReduxProvider from "@/store/ReduxProvider";
 // import ReduxProvider from "@/store/ReduxProvider";
 
 const geistSans = Geist({
@@ -43,11 +44,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <Headers/> */}
-        {children}
-        {/* <ReduxProvider>
-        </ReduxProvider> */}
-        <ChatBotButton />
+        <ReduxProvider>
+          {children}
+          <ChatBotButton />
+        </ReduxProvider>
       </body>
     </html>
   );

@@ -18,10 +18,10 @@ function Faq({faqList}:{faqList:any}) {
   
 
   return (
-    <div className=" flex justify-center py-12">
+    <div className="w-full flex justify-center py-12">
       <div className="w-full flex flex-col">
-        <h1 className="text-2xl font-medium mx-4 mb-8">{"Frequently asked Questions (FAQ's)"}</h1>
-        <div>
+        <h1 className="text-xl font-medium mb-8">{"Frequently asked Questions (FAQ's)"}</h1>
+        <div className="w-full">
           {getFaqlist &&
             getFaqlist.map((item: any, index: number) => {
                 if(item !== undefined){

@@ -31,7 +31,7 @@ const FaqItem = ({
   }, [faqstate, index]);
 
   return (
-    <div className="mx-4 text-[#1F1828]">
+    <div className=" text-[#1F1828]">
       <div
         className="flex justify-between items-center cursor-pointer"
         onClick={handleFaqItem}
