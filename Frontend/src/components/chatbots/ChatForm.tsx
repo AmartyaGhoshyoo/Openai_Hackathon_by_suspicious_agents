@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Send, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { div } from "motion/react-client";
+import { div, span } from "motion/react-client";
 import { usegenerateMd5 } from "../hooks/usegenerateMd5";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
@@ -81,7 +81,7 @@ const MessageAvatar = ({ type }: { type: "user" | "bot" }) => {
           : "bg-black border border-white/20 text-white"
       }`}
     >
-      {type === "user" ? "U" : "B"}
+      {type === "user" ? ( <div>{login ? (  <img className="rounded-full" src={img} alt="user_img"/> ):( <span>U</span> )}</div> ) : "B"}
     </div>
   );
 };
