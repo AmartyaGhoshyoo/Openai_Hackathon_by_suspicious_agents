@@ -12,7 +12,7 @@ collection=asyncio.run(client_collection('urls_merged'))
 # ====================================
 # For Testing Purposes in local starts
 # ====================================
-async def search_internal_urls(search_query:str):
+async def search_internal_urls_test(search_query:str):
     results=await collection.query(search_query)
     top_metadata = results['metadatas'][0][0]
     return {
@@ -34,6 +34,6 @@ async def search_internal_urls(search_query:str):
     
     
 if __name__=='__main__':
-    result=asyncio.run(search_internal_urls('Api Quickstart'))
+    result=asyncio.run(search_internal_urls_test('Api Quickstart'))
     print(result)
     
