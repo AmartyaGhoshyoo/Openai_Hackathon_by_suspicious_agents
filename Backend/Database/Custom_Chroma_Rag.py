@@ -84,7 +84,7 @@ class addDocuments(AsyncChromaDB):
         documents = []
         metadatas = []
         ids = []
-        for _,row in df.itterows():
+        for _,row in df.iterrows():
             description=str(row['description'])
             metadata={
                 'best_url':row['url'],
