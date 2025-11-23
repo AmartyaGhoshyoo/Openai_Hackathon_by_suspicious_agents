@@ -1,39 +1,39 @@
 url,description
-https://aai-chatbot-that-moves-with-you.vercel.app/,Home page
-https://aai-chatbot-that-moves-with-you.vercel.app/docs,Documentation index
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/[slug],Dynamic docs page (pattern)
-https://aai-chatbot-that-moves-with-you.vercel.app/reader,In-app reader with iframe and fallback
-https://aai-chatbot-that-moves-with-you.vercel.app/#top,Scroll to top of home page
-https://aai-chatbot-that-moves-with-you.vercel.app/#features,Home page features section
-https://aai-chatbot-that-moves-with-you.vercel.app/#showcase,Home page showcase section
-https://aai-chatbot-that-moves-with-you.vercel.app/#pricing,Home page pricing section
-https://aai-chatbot-that-moves-with-you.vercel.app/#faq,Home page FAQ section
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/getting-started,Getting Started guide
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/architecture-overview,Architecture overview
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/api-quickstart,API quickstart
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/auth-and-sso,Authentication and SSO
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/webhooks,Webhooks guide
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/rate-limiting,Rate limiting
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/error-handling,Error handling
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/observability,Observability
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/logging,Logging
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/monitoring-alerts,Monitoring and alerts
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/security-hardening,Security hardening
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/gdpr-data-retention,GDPR and data retention
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/backup-disaster-recovery,Backup and disaster recovery
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/performance-tuning,Performance tuning
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/caching-strategies,Caching strategies
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/database-migrations,Database migrations
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/testing-strategy,Testing strategy
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/ci-cd-pipeline,CI/CD pipeline
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/feature-flags,Feature flags
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/accessibility,Accessibility (a11y)
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/internationalization,Internationalization (i18n)
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/seo-basics,SEO basics
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/content-delivery,Content delivery & CDN
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/mobile-ux,Mobile UX patterns
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/email-deliverability,Email deliverability
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/billing-subscriptions,Billing & subscriptions
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/support-slas,Support & SLAs
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/changelog-release-notes,Changelog & release notes
-https://aai-chatbot-that-moves-with-you.vercel.app/docs/roadmap-rfcs,Roadmap & RFCs
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/,Home page
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs,Documentation index
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/[slug],Dynamic docs page (pattern)
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/reader,In-app reader with iframe and fallback
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/#top,Scroll to top of home page
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/#features,Home page features section
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/#showcase,Home page showcase section
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/#pricing,Home page pricing section
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/#faq,Home page FAQ section
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/getting-started,Getting Started guide
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/architecture-overview,Architecture overview
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/api-quickstart,API quickstart
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/auth-and-sso,Authentication and SSO
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/webhooks,Webhooks guide
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/rate-limiting,Rate limiting
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/error-handling,Error handling
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/observability,Observability
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/logging,Logging
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/monitoring-alerts,Monitoring and alerts
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/security-hardening,Security hardening
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/gdpr-data-retention,GDPR and data retention
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/backup-disaster-recovery,Backup and disaster recovery
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/performance-tuning,Performance tuning
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/caching-strategies,Caching strategies
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/database-migrations,Database migrations
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/testing-strategy,Testing strategy
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/ci-cd-pipeline,CI/CD pipeline
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/feature-flags,Feature flags
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/accessibility,Accessibility (a11y)
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/internationalization,Internationalization (i18n)
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/seo-basics,SEO basics
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/content-delivery,Content delivery & CDN
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/mobile-ux,Mobile UX patterns
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/email-deliverability,Email deliverability
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/billing-subscriptions,Billing & subscriptions
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/support-slas,Support & SLAs
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/changelog-release-notes,Changelog & release notes
+https://openai-hackathon-by-suspicious-agen-omega.vercel.app/docs/roadmap-rfcs,Roadmap & RFCs
