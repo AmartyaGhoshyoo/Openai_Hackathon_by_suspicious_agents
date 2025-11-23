@@ -81,7 +81,21 @@ const MessageAvatar = ({ type }: { type: "user" | "bot" }) => {
           : "bg-black border border-white/20 text-white"
       }`}
     >
-      {type === "user" ? ( <div>{login ? (  <img className="rounded-full" src={img} alt="user_img"/> ):( <span>U</span> )}</div> ) : "B"}
+      {type === "user" ? (
+        <div>
+          {login ? (
+            img ? (
+              <img src={img} alt="img" />
+            ) : (
+              <span className="uppercase">{name?.charAt(0) || "U"}</span>
+            )
+          ) : (
+            <span>U</span>
+          )}
+        </div>
+      ) : (
+        "B"
+      )}
     </div>
   );
 };
