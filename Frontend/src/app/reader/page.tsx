@@ -1,13 +1,10 @@
 "use client";
-import { useIframeStatus } from "@/components/hooks/useiframe";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useMemo, useState } from "react";
 
 function ReaderContent() {
   const params = useSearchParams();
   const raw = params.get("url") || "";
-
-  const {iframeRef,isFailed,isLoaded,isLoading} = useIframeStatus();
   const url = useMemo(() => {
     try {
       return decodeURIComponent(raw);
@@ -51,7 +48,7 @@ function ReaderContent() {
       </div>
       <div className="flex-1">
         {url ? (
-          isFailed ? (
+          failed ? (
             <div className="h-full w-full flex items-center justify-center text-center px-6">
               <div>
                 <div className="mb-3 text-lg">We couldn't embed this site.</div>
@@ -60,7 +57,6 @@ function ReaderContent() {
             </div>
           ) : (
             <iframe
-               ref={iframeRef}
               src={url}
               className="w-full h-full bg-white"
               onError={() => setFailed(true)}
