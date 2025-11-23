@@ -16,7 +16,7 @@ interface Message {
   type: "user" | "bot";
 }
 
-// Hook for 1Storage management
+// Hook for Storage management
 const useLocalStorage = (key: string) => {
   const loadMessages = (): Message[] => {
     try {
@@ -75,13 +75,25 @@ const MessageAvatar = ({ type }: { type: "user" | "bot" }) => {
 
   return (
     <div
-      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 ${
+      className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium flex-shrink-0 overflow-hidden ${
         type === "user"
           ? "bg-white text-black"
           : "bg-black border border-white/20 text-white"
       }`}
     >
-      {type === "user" ? ( <div>{login ? (  <img className="rounded-full" src={img} alt="user_img"/> ):( <span>U</span> )}</div> ) : "B"}
+      {type === "user" ? (
+        <img 
+          className="w-full h-full object-cover" 
+          src={login ? img : "/user_avatar.png"} 
+          alt="user_img"
+        />
+      ) : (
+        <img 
+          className="w-full h-full object-cover" 
+          src="/bot_avatar.png" 
+          alt="bot_avatar" 
+        />
+      )}
     </div>
   );
 };
@@ -102,13 +114,6 @@ const MessageBubble = ({
     }`}
   >
     <p className="text-base leading-relaxed">{message.text}</p>
-  </div>
-);
-
-// Iframe bubble for URL previews (kept but not used for redirect flow)
-const IframeBubble = ({ url }: { url: string }) => (
-  <div className="w-full max-w-2xl h-96 border border-white/10 rounded-lg overflow-hidden">
-    <iframe src={url} className="w-full h-full bg-white" />
   </div>
 );
 
@@ -133,8 +138,6 @@ const MessageTimestamp = ({
 const MessageItem = ({ message }: { message: Message }) => {
   const isUser = message.type === "user";
 
-  const urlMatch = message.text.match(/https?:\/\/\S+/);
-
   return (
     <div
       className={`flex gap-3 mb-8 ${isUser ? "flex-row-reverse" : "flex-row"}`}
@@ -142,12 +145,6 @@ const MessageItem = ({ message }: { message: Message }) => {
       <MessageAvatar type={message.type} />
       <div className={`flex flex-col ${isUser ? "items-end" : "items-start"}`}>
         <MessageBubble message={message} isUser={isUser} />
-        {/* We are not auto-embedding anymore; navigation happens instead */}
-        {/* {(!isUser && urlMatch) && (
-                    <div className="mt-3">
-                        <IframeBubble url={urlMatch[0]} />
-                    </div>
-                )} */}
         <MessageTimestamp timestamp={message.timestamp} isUser={isUser} />
       </div>
     </div>
@@ -238,6 +235,32 @@ const ChatInput = ({
   );
 };
 
+// Floating Suggestions Component
+const FloatingSuggestions = ({ onSuggestionClick }: { onSuggestionClick: (text: string) => void }) => {
+  const suggestions = [
+    "Take me to the pricing section",
+    "Show me the API guide",
+    "Take me to documentation",
+    "Find me about Geoffrey Hinton from wikipedia",
+    "Explain this page",
+    "What can you do?"
+  ];
+
+  return (
+    <div className="px-6 pb-4 flex flex-wrap gap-2">
+      {suggestions.map((suggestion, index) => (
+        <button
+          key={index}
+          onClick={() => onSuggestionClick(suggestion)}
+          className="px-4 py-2 text-sm bg-black border border-white/20 text-white/70 rounded-full hover:bg-white/5 hover:text-white hover:border-white/40 transition-all duration-200"
+        >
+          {suggestion}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 // Main Chat Form Component
 const ChatForm = () => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -257,44 +280,6 @@ const ChatForm = () => {
   useEffect(() => {
     saveMessages(messages);
   }, [messages]);
-
-  // Track page navigation and send to agent
-  // useEffect(() => {
-  //     const trackPageChange = async () => {
-  //         try {
-  //             await fetch("http://127.0.0.1:8001/chat", {
-  //                 method: "POST",
-  //                 headers: { "Content-Type": "application/json" },
-  //                 body: JSON.stringify({
-  //                     message: "User navigated to a new page",
-  //                     current_url: window.location.href
-  //                 })
-  //             });
-  //         } catch (e) {
-  //             console.log("Page tracking failed:", e);
-  //         }
-  //     };
-
-  //     // Track initial page load
-  //     trackPageChange();
-
-  //     // Track route changes (Next.js router events)
-  //     const handleRouteChange = () => {
-  //         setTimeout(trackPageChange, 100);
-  //     };
-
-  //     // Listen for popstate (back/forward navigation)
-  //     window.addEventListener('popstate', handleRouteChange);
-
-  //     return () => {
-  //         window.removeEventListener('popstate', handleRouteChange);
-  //     };
-  // }, []);
-
-  const extractUrl = (text: string): string | null => {
-    const m = text.match(/https?:\/\/\S+/);
-    return m ? m[0] : null;
-  };
 
   const handleSendMessage = async (session_key: string) => {
     if (!inputValue.trim()) return;
@@ -318,16 +303,16 @@ const ChatForm = () => {
       if (params.has("url")) {
         rawUrl = decodeURIComponent(params.get("url") || "");
       } else {
-        rawUrl = window.location.href; // already raw
+        rawUrl = window.location.href;
       }
 
       const res = await fetch(
-        "https://gpt-qa.parentune.com/chat/agentic_webpilot/",
+        "https://gpt-qa.parentune.com/chat/agentic_webpilot_modified/",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            session_key: session_key || "",
+            "session-key": session_key || "",
           },
           body: JSON.stringify({
             message: userText,
@@ -337,87 +322,56 @@ const ChatForm = () => {
       );
 
       const data = await res.json();
-      const botText =
-        typeof data.text === "string" ? data.text : JSON.stringify(data);
       setIsloading(false);
-      console.log(botText);
 
-      // Try JSON {"best_url": "..."} first, then fallback to regex in text
-      let urlFromJson: string | null = null;
-      let description: string | null = null;
-
-      // If backend sends JSON
-      if (data.best_url || data.description) {
-        urlFromJson = data.best_url ?? null;
-        description = data.description ?? null;
-      } else {
-        // Fallback: treat as text
-        const botText =
-          typeof data.text === "string" ? data.text : JSON.stringify(data);
-        try {
-          const parsed = JSON.parse(botText);
-          if (parsed && typeof parsed.best_url === "string") {
-            urlFromJson = parsed.best_url;
-          }
-          if (parsed && typeof parsed.description === "string") {
-            description = parsed.description;
-          }
-        } catch (_) {
-          // not JSON, ignore
-        }
+      // Handle rate limiting and error responses
+      if (res.status === 429 || res.status === 400 || res.status === 500) {
+        const botResponse: Message = {
+          id: (Date.now() + 1).toString(),
+          text: data.response || "An error occurred. Please try again.",
+          timestamp: new Date(),
+          type: "bot",
+        };
+        setMessages((prev) => [...prev, botResponse]);
+        return;
       }
 
-      const maybeUrl = urlFromJson;
-      if (maybeUrl) {
+      // Extract best_url and response from the new backend format
+      const bestUrl = data.best_url || "";
+      const responseText = data.response || "";
+
+      // If best_url is provided and not empty, navigate
+      if (bestUrl && bestUrl.trim() !== "") {
         try {
-          const parsed = new URL(maybeUrl, window.location.origin);
+          const parsed = new URL(bestUrl, window.location.origin);
           if (parsed.origin === window.location.origin) {
             // Internal link → SPA navigate
             router.push(parsed.pathname + parsed.search + parsed.hash);
           } else {
             // External link → reader
-            const params = new URLSearchParams({ url: parsed.toString() });
-            router.push(`/reader?${params.toString()}`);
+            const readerParams = new URLSearchParams({ url: parsed.toString() });
+            router.push(`/reader?${readerParams.toString()}`);
           }
-
-          // ✅ Use description directly here
-          const botResponse: Message = {
-            id: (Date.now() + 1).toString(),
-            text:
-              description ??
-              "I’ve taken you to the page. Let me know if you need help understanding anything here.",
-            timestamp: new Date(),
-            type: "bot",
-          };
-          setMessages((prev) => [...prev, botResponse]);
         } catch {
           // Fallback if URL parsing fails
-          const params = new URLSearchParams({ url: maybeUrl });
-          router.push(`/reader?${params.toString()}`);
-          const botResponse: Message = {
-            id: (Date.now() + 1).toString(),
-            text:
-              description ??
-              "I’ve taken you to the page. Let me know if you need help understanding anything here.",
-            timestamp: new Date(),
-            type: "bot",
-          };
-          setMessages((prev) => [...prev, botResponse]);
+          const readerParams = new URLSearchParams({ url: bestUrl });
+          router.push(`/reader?${readerParams.toString()}`);
         }
-        return;
       }
 
+      // Add bot response to chat
       const botResponse: Message = {
         id: (Date.now() + 1).toString(),
-        text: botText,
+        text: responseText || "I've processed your request.",
         timestamp: new Date(),
         type: "bot",
       };
       setMessages((prev) => [...prev, botResponse]);
     } catch (e) {
+      setIsloading(false);
       const errResponse: Message = {
         id: (Date.now() + 2).toString(),
-        text: "Error contacting server.",
+        text: "Error contacting server. Please try again.",
         timestamp: new Date(),
         type: "bot",
       };
@@ -429,10 +383,17 @@ const ChatForm = () => {
     setMessages([]);
   };
 
+  const handleSuggestionClick = (suggestionText: string) => {
+    setInputValue(suggestionText);
+  };
+
   return (
     <div className="w-full h-full bg-black text-white flex flex-col">
       <ChatHeader onClear={handleClearMessages} />
       <MessagesList messages={messages} isloading={isloading} />
+      {messages.length === 0 && !isloading && (
+        <FloatingSuggestions onSuggestionClick={handleSuggestionClick} />
+      )}
       <ChatInput
         value={inputValue}
         onChange={setInputValue}

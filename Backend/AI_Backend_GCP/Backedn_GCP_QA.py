@@ -12,7 +12,7 @@ from pydantic import BaseModel
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from AI_Moves_Chatbot import openai_agent_declaration
+from Backend import openai_agent_declaration
 from psycopg2.extras import RealDictCursor
 from Storage import set_db_name
 from agents import Runner
@@ -24,15 +24,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://35.244.16.171:3000",
-        "https://production-level-a-ai.vercel.app",
-        "https://34.47.255.133",
-        "https://gpt-qa.parentune.com",
-        "https://81f2dmn9-3000.inc1.devtunnels.ms",
         "http://34.47.255.133",
         "https://www.parentune.com",
         "https://agentic-ai-enterprise.vercel.app",
-        "https://35.186.239.61",
         "https://aai-chatbot-that-moves-with-you.vercel.app"
     ],
     allow_origin_regex=r"^https?:\/\/([a-z0-9-]+\.)*parentune\.com$",

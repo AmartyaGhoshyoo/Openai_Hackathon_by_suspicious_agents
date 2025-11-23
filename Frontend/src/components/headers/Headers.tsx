@@ -78,7 +78,7 @@ const Headers = () => {
                   onClick={() => router.push("/signin")}
                   className="h-[40px] w-[max-content] px-8 py-4 rounded-full bg-[#242424] border border-[#313131] flex justify-center items-center cursor-pointer"
                 >
-                  Signin
+                  Sign in
                 </button>
               )}
             </div>
