@@ -18,10 +18,9 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "http://34.47.255.133",
-        "https://www.parentune.com",
-        "https://agentic-ai-enterprise.vercel.app",
-        "https://aai-chatbot-that-moves-with-you.vercel.app"
+        "https://openai-hackathon-by-suspicious-agen-omega.vercel.app",
+        "https://aai-chatbot-that-moves-with-you.vercel.app",
+        
     ],
     allow_origin_regex=r"^https?:\/\/([a-z0-9-]+\.)*parentune\.com$",
     allow_credentials=True,
