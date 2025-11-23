@@ -7,7 +7,7 @@ class customFirecrawl:
         self.fircrawl_init=Firecrawl(self.api_key)
 
 
-firecrawl_colleciton=customFirecrawl(api_key="fc-ec73eb1678be49b8a4d19ad696818c74")
+firecrawl_colleciton=customFirecrawl(api_key="your-api-key")
 
 
 @function_tool

@@ -3,18 +3,12 @@ warnings.filterwarnings('ignore',category=DeprecationWarning)
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
-import asyncpg
 import redis.asyncio as redis
-import hashlib, psycopg2
-from fastapi import Header, Body, HTTPException
-from sqlalchemy import JSON
+from fastapi import Header, Body, FastAPI
 from pydantic import BaseModel
-from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from Backend import openai_agent_declaration
-from psycopg2.extras import RealDictCursor
-from Storage import set_db_name
+from AI_Backend_Modified import openai_agent_declaration,set_db_name
 from agents import Runner
 app = FastAPI()
 # -------------------------------
@@ -48,10 +42,13 @@ app.add_middleware(
 
 
 
-# -------------------------------
+# ---------------------------------------
 # Redis Connection Modified ASync Starts
-# -------------------------------
-DAILY_MESSAGE_LIMIT = 30  # NEW: user can send only 30 messages/day
+# ----------------------------------------
+redis_client = redis.Redis(host="localhost", port=6379, db=0)
+DAILY_MESSAGE_LIMIT = 50  # Restricting user from misuing
+MIN_LIMIT = 10   # per minute
+DAY_LIMIT = 500  # per day
 
 async def check_rate_limit_modified(session_key: str):
     if not session_key:
@@ -82,40 +79,6 @@ async def check_rate_limit_modified(session_key: str):
 # -------------------------------
 # Redis Connection Modified ASync Ends
 # -------------------------------
-
-
-
-
-
-
-
-# -------------------------------
-# Redis Connection Sync Starts
-# -------------------------------
-redis_client = redis.Redis(host="localhost", port=6379, db=0)
-# Rate limit policy
-MIN_LIMIT = 10   # per minute
-DAY_LIMIT = 500  # per day
-async def check_rate_limit(session_key: str):
-    if not session_key:
-        return 
-
-    minute_key = f"rate:{session_key}:minute"
-    day_key = f"rate:{session_key}:day"
-    minute_count = await redis_client.incr(minute_key)
-    day_count = await redis_client.incr(day_key)
-    if minute_count == 1:
-        await redis_client.expire(minute_key, 60)      # 60 seconds
-    if day_count == 1:
-        await redis_client.expire(day_key, 86400)      # 24 hours        
-    # Validate limits
-    return minute_count, day_count
-
-# -------------------------------
-# Redis Connection Sync Ends
-# -------------------------------
-
-
 
 
 
@@ -177,7 +140,7 @@ async def chat_agentic_webpilot(
             }
         )
 
-# -------------------------------
+# -----------------------------------
 # Webpilot Connection Modified Ends
-# -------------------------------
+# ------------------------------------
 
