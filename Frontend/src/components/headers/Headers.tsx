@@ -6,16 +6,31 @@ import { Button } from "../ui/button";
 import { motion } from "motion/react";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/store/store";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { clearUser } from "@/store/slice/loginuserSlice";
 
 const Headers = () => {
+
+  const dispatch = useDispatch();
   const router = useRouter();
   const [open, setOpen] = React.useState(false);
 
   const { login, id, img, name } = useSelector(
     (state: RootState) => state.loginuserSlice
   );
+
+  const handleLogout = () => {
+    dispatch(clearUser());
+  };
 
   return (
     <>
@@ -70,9 +85,17 @@ const Headers = () => {
             </Link>
             <div>
               {login ? (
-                <button className="h-[40px] w-[max-content] text-sm px-8 py-4 rounded-full bg-[#242424] border border-[#313131] flex justify-center items-center cursor-pointer">
-                  {name}
-                </button>
+                <DropdownMenu>
+                  <DropdownMenuTrigger>{name}</DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem
+                      className="flex justify-center items-center"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <button
                   onClick={() => router.push("/signin")}
@@ -100,9 +123,17 @@ const Headers = () => {
             >
               <div className="mb-3 flex items-center justify-between px-4">
                 {login ? (
-                  <button className="h-[42px] px-8 py-4 rounded-full bg-[#242424] border border-[#323232] text-white flex justify-center items-center">
-                    {name}
-                  </button>
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>{name}</DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                      <DropdownMenuItem
+                        className="flex justify-center items-center"
+                        onClick={handleLogout}
+                      >
+                        Logout
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 ) : (
                   <Link
                     href={"/signin"}
