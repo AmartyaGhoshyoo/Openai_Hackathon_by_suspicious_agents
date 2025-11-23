@@ -12,7 +12,7 @@ firecrawl_colleciton=customFirecrawl(api_key="your-api-key")
 
 @function_tool
 async def crawling_tool(search_query:str):
-     return firecrawl_colleciton.fircrawl_init.search(search_query, limit=1).web.url
+     return firecrawl_colleciton.fircrawl_init.search(search_query, limit=1).web[0].url
  
 if __name__=='__main__':
     results=firecrawl_colleciton.fircrawl_init.search(query="cough & cold related blogs from parentune", limit=1).web[0].url

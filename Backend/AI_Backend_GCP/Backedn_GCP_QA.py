@@ -34,13 +34,6 @@ app.add_middleware(
 
 
 
-
-
-
-
-
-
-
 # ---------------------------------------
 # Redis Connection Modified ASync Starts
 # ----------------------------------------
@@ -78,9 +71,6 @@ async def check_rate_limit_modified(session_key: str):
 # -------------------------------
 # Redis Connection Modified ASync Ends
 # -------------------------------
-
-
-
 
 
 # -------------------------------
@@ -128,7 +118,6 @@ async def chat_agentic_webpilot(
         final_output = result.final_output if hasattr(result, 'final_output') else str(result)
         return JSONResponse(content={
             "best_url": final_output.best_url,
-            "description": final_output.description,
             "response": final_output.response
             })
     except Exception as e:
@@ -142,4 +131,3 @@ async def chat_agentic_webpilot(
 # -----------------------------------
 # Webpilot Connection Modified Ends
 # ------------------------------------
-
